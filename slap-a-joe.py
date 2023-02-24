@@ -14,16 +14,17 @@ pygame.init()
 WIDTH = 640
 HEIGHT = 480
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Whack-A-Joe")
+pygame.display.set_caption("Whack-a-Mole")
 
 # Set up game assets
 BACKGROUND_COLOR = (255, 255, 255)
-MOLE_IMAGE = pygame.transform.scale(pygame.image.load("mole.png"), (50, 50))
+MOLE_IMAGE = pygame.transform.scale(pygame.image.load("mole.png"), (30, 30))
 MOLE_WIDTH = MOLE_HEIGHT = 30
 WHACK_SOUND = pygame.mixer.Sound("whack.wav")
 DEAD_SOUND = pygame.mixer.Sound("dead.wav")
 FONT = pygame.font.SysFont(None, 36)
 MOUSE_IMAGE = pygame.transform.scale(pygame.image.load("hand.png"), (50, 50))
+BG_MUSIC = pygame.mixer.music.load("bgmusic.mp3")
 
 # Set up game variables
 score = 0
@@ -60,6 +61,9 @@ for i in range(5):
 # Set up mouse pointer
 pygame.mouse.set_visible(False)
 mouse_image_rect = MOUSE_IMAGE.get_rect()
+
+# Set up background music
+pygame.mixer.music.play(-1)
 
 # Game loop
 running = True
@@ -100,4 +104,5 @@ while running:
     clock.tick(60)
 
 # Clean up
+pygame.mixer.music.stop()
 pygame.quit()
